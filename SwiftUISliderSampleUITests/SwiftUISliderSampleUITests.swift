@@ -30,6 +30,39 @@ final class SwiftUISliderSampleUITests: XCTestCase {
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func testSliderUpdates() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        // Retrieve all the elements to be interacted with
+        let contrastSlider = app.sliders["contrastSlider"]
+        let contrastSliderText = app.staticTexts["contrastSliderValue"]
+        
+        let brightnessSlider = app.sliders["brightnessSlider"]
+        let brightnessSliderText = app.staticTexts["brightnessSliderValue"]
+        
+        let saturationSlider = app.sliders["saturationSlider"]
+        let saturationSliderText = app.staticTexts["saturationSliderValue"]
+        // Wait
+        sleep(1)
+        // Trigger an event
+        contrastSlider.adjust(toNormalizedSliderPosition: 0.7)
+        // Wait
+        sleep(1)
+        // Trigger an event
+        brightnessSlider.adjust(toNormalizedSliderPosition: 0.3)
+        // Wait
+        sleep(1)
+        // Trigger an event
+        saturationSlider.adjust(toNormalizedSliderPosition: 0.8)
+        // Wait
+        sleep(1)
+        // Validate your expectations
+        XCTAssertEqual(contrastSliderText.label, "41%", "Contrast slider is not updating properly")
+        XCTAssertEqual(brightnessSliderText.label, "-41%", "Contrast slider is not updating properly")
+        XCTAssertEqual(saturationSliderText.label, "62%", "Contrast slider is not updating properly")
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {

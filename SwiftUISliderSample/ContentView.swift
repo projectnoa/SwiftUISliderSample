@@ -33,36 +33,42 @@ struct ContentView: View {
                     .bold()
                 Text("\((Int(contrast) - 100))%")
                     .bold()
+                    .accessibilityIdentifier("contrastSliderValue")
             }
             
             Slider(value: $contrast, in: 0...200, step: 1)
                 .padding(.horizontal, 10)
                 .onChange(of: contrast,
                           perform: alterImage)
+                .accessibilityIdentifier("contrastSlider")
             
             HStack {
                 Text("Brightness:")
                     .bold()
                 Text("\(Int(brightness))%")
                     .bold()
+                    .accessibilityIdentifier("brightnessSliderValue")
             }
             
             Slider(value: $brightness, in: -100...100, step: 1)
                 .padding(.horizontal, 10)
                 .onChange(of: brightness,
                           perform: alterImage)
+                .accessibilityIdentifier("brightnessSlider")
             
             HStack {
                 Text("Saturation:")
                     .bold()
                 Text("\((Int(saturation) - 100))%")
                     .bold()
+                    .accessibilityIdentifier("saturationSliderValue")
             }
             
             Slider(value: $saturation, in: 0...200, step: 1)
                 .padding(.horizontal, 10)
                 .onChange(of: saturation,
                           perform: alterImage)
+                .accessibilityIdentifier("saturationSlider")
             
             Button("Reset") {
                 contrast = 100
